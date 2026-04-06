@@ -1,0 +1,74 @@
+import numpy as np
+import sounddevice as sd
+from faster_whisper import WhisperModel
+
+WHISPER_SR = 16000
+DURATION = 5
+
+def load_model():
+    try:
+        print("Loading Whisper medium.en on CUDA (float16)...")
+        model = WhisperModel("medium.en", device="cuda", compute_type="float16")
+        print("Whisper ready on GPU.\n")
+        return model
+    except Exception as e:
+        print(f"GPU init failed: {e}")
+        print("Falling back to CPU int8...")
+        model = WhisperModel("medium.en", device="cpu", compute_type="int8")
+        print("Whisper ready on CPU.\n")
+        return model
+
+def capture_audio(duration: int = DURATION, sample_rate: int = WHISPER_SR) -> np.ndarray:
+    frames = int(duration * sample_rate)
+    audio = sd.rec(frames, samplerate=sample_rate, channels=1, dtype="float32")
+    sd.wait()
+    return np.asarray(audio).flatten().astype(np.float32)
+
+def main():
+    whisper_model = load_model()
+    try:
+        device_info = sd.query_devices(kind="input")
+        print(f"Using mic: {device_info['name']}")
+    except Exception as e:
+        print(f"Could not query default input device: {e}")
+        print("Using system default microphone.")
+
+    while True:
+        cmd = input("Press Enter to record, or type 'exit': ").strip().lower()
+        if cmd == "exit":
+            break
+
+        try:
+            print(f"🎤 Listening for {DURATION} seconds...")
+            audio_input = capture_audio(DURATION, WHISPER_SR)
+
+            if audio_input.size == 0:
+                print("No audio captured.\n")
+                continue
+
+            peak = float(np.max(np.abs(audio_input)))
+            if peak < 0.003:
+                print("Audio is too quiet. Try speaking louder.\n")
+                continue
+
+            print("🔄 Transcribing...")
+            segments, _ = whisper_model.transcribe(
+                audio_input,
+                language="en",
+                vad_filter=True,
+                beam_size=1,
+                best_of=1,
+                temperature=0.0,
+                condition_on_previous_text=False,
+            )
+            text = " ".join(segment.text for segment in segments).strip()
+            if text:
+                print(f"You said: {text}\n")
+            else:
+                print("No speech recognized.\n")
+        except Exception as e:
+            print(f"Recording/transcription error: {e}\n")
+
+if __name__ == "__main__":
+    main()
+    

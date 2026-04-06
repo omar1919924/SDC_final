@@ -1,0 +1,6 @@
+Set-Location "C:\SDC"
+.\Kokoro-FastAPI\start-cpu.ps1
+
+
+cd "C:\SDC\Kokoro-FastAPI"
+.\start-cpu.ps1

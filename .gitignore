@@ -1,0 +1,25 @@
+# Exclude requested subproject
+Kokoro-FastAPI/
+
+# Python cache/artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual/env folders
+.venv/
+venv/
+.uv/
+
+# IDE folders
+.idea/
+.vscode/
+
+# Local heavy/generated data
+hf_cache/
+sound_output/
+
+# OS files
+.DS_Store
+Thumbs.db

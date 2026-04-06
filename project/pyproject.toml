@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adhd-stress-flower-app"
+version = "0.1.0"
+description = "Federated stress detection prototype"
+requires-python = ">=3.10"
+dependencies = [
+  "flwr>=1.28.0",
+  "torch",
+  "pandas",
+  "numpy",
+  "scikit-learn",
+  "joblib",
+]
+
+[tool.flwr.app]
+publisher = "local"
+
+[tool.flwr.app.components]
+serverapp = "federated.server_app:app"
+clientapp = "federated.client:app"
+
+[tool.flwr.app.config]
+num-server-rounds = 1
+
+
+#######################################################################
+# CONFIGURATION MIGRATION NOTICE:
+#
+# What was previously called "federation config" for SuperLink
+# connections in pyproject.toml has been renamed and moved.
+#
+# These settings are now **SuperLink connection configuration**
+# and are defined in the Flower configuration file.
+#
+# The entries below are commented out intentionally and are kept
+# only as a migration reference.
+#
+# Docs: https://flower.ai/docs/framework/ref-flower-configuration.html
+#######################################################################
+
+# [tool.flwr.federations]
+# default = "local-deployment"
+
+# [tool.flwr.federations.local-deployment]
+# options.num-supernodes = 1

@@ -1,0 +1,1 @@
+timestamp,HR_Mean,HRV,GSR_peaks_per_min,GSR_slope,Acc_magnitude_mean,Acc_magnitude_std,Acc_jerk,model_prediction,teacher_label
