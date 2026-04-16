@@ -9,7 +9,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassif
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, f1_score
 
-from src.features.window_features import build_window_features, feature_columns
+from ai_model.src.features.window_features import build_window_features, feature_columns
 
 
 def map_binary_target(labels: pd.Series) -> pd.Series:

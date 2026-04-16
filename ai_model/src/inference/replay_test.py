@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.metrics import classification_report
 
-from src.inference.realtime_predictor import RealtimeConcentrationPredictor
+from ai_model.src.inference.realtime_predictor import RealtimeConcentrationPredictor
 
 
 def truth_to_binary(label: str) -> str:
