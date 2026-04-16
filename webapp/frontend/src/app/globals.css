@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9f9fa;
+  --foreground: #1a1c1d;
+  
+  /* Primary */
+  --primary: #061d3a;
+  --on-primary: #ffffff;
+  --primary-container: #1e3250;
+  --on-primary-container: #879abe;
+  
+  /* Secondary */
+  --secondary: #7e5700;
+  --on-secondary: #ffffff;
+  --secondary-container: #feb300;
+  --on-secondary-container: #6a4800;
+  
+  /* Tertiary */
+  --tertiary: #00230a;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #003b16;
+  --on-tertiary-container: #00b250;
+  
+  /* Error */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  
+  /* Surface */
+  --surface: #f9f9fa;
+  --on-surface: #1a1c1d;
+  --surface-variant: #e2e2e3;
+  --on-surface-variant: #44474d;
+  --outline: #74777e;
+  --outline-variant: #c4c6ce;
+  
+  /* Containers */
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f3f4;
+  --surface-container: #eeeeef;
+  --surface-container-high: #e8e8e9;
+  --surface-container-highest: #e2e2e3;
+  
+  /* Fixed */
+  --primary-fixed: #d5e3ff;
+  --primary-fixed-dim: #b3c7ed;
+  --on-primary-fixed: #041c39;
+  --on-primary-fixed-variant: #344766;
+  
+  --secondary-fixed: #ffdeac;
+  --secondary-fixed-dim: #ffba35;
+  --on-secondary-fixed: #281900;
+  --on-secondary-fixed-variant: #5f4100;
+  
+  --tertiary-fixed: #6bff8f;
+  --tertiary-fixed-dim: #4ae176;
+  --on-tertiary-fixed: #002109;
+  --on-tertiary-fixed-variant: #005321;
+
+  --inverse-surface: #2f3132;
+  --inverse-on-surface: #f0f1f2;
+  --inverse-primary: #b3c7ed;
+}
+
+.dark {
+  --background: #1a1c1d;
+  --foreground: #f9f9fa;
+  /* Add dark mode variations if needed, though HTML was mostly light */
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+  
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+  
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-inverse-primary: var(--inverse-primary);
+  
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  
+  --font-headline: "Newsreader", serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", monospace;
+  
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+.precision-grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--outline-variant) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+  @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}
+
+.glass-card-dark {
+  @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+}
+
+.glass-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 10px rgba(6, 182, 212, 0.05);
+}
+
+.glass-glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15), inset 0 0 10px rgba(245, 158, 11, 0.05);
+}
+
+.glass-glow-rose {
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.15), inset 0 0 10px rgba(244, 63, 94, 0.05);
+}
+
+/* Engagement Colors */
+.bg-engagement-focused { @apply bg-cyan-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)]; }
+.bg-engagement-distracted { @apply bg-amber-500 text-white shadow-[0_0_15px_rgba(245,158,11,0.4)]; }
+.bg-engagement-stressed { @apply bg-rose-500 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]; }
+
+.text-engagement-focused { @apply text-cyan-500; }
+.text-engagement-distracted { @apply text-amber-500; }
+.text-engagement-stressed { @apply text-rose-500; }
+
+.border-engagement-focused { @apply border-cyan-500/30; }
+.border-engagement-distracted { @apply border-amber-500/30; }
+.border-engagement-stressed { @apply border-rose-500/30; }
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* breathing animation */
+@keyframes breathing {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.animate-breathing {
+  animation: breathing 3s ease-in-out infinite;
+}
+
+.active-role-card {
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px -10px rgba(6, 29, 58, 0.1);
+}
