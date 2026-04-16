@@ -1,6 +1,3 @@
-# Exclude requested subproject
-Kokoro-FastAPI/
-
 # Python cache/artifacts
 __pycache__/
 *.py[cod]
